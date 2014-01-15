@@ -1,11 +1,14 @@
 {
     "name": "pom",
-    "description": "Simple node cli pomodoro timer",
+    "description": "Simple node CLI Pomodoro timer",
     "author": "Ettore Delprino",
     "dependencies": {
+        "daemonize2": "0.4.2",
+        "yamljs": "0.1.4",
+        "commander": "2.1.0"
     },
     "bin": {
-        "pom": "./bin/main.js"
+        "pom": "./bin/pom"
     },
     "preferGlobal" : "true"
 }

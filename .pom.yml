@@ -1,0 +1,5 @@
+duration:
+    pomodoro: 1
+event:
+    pomodoro_ended:
+        - terminal-notifier -message "Fine pomodoro"
