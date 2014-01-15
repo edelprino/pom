@@ -1,0 +1,11 @@
+{
+    "name": "pom",
+    "description": "Simple node cli pomodoro timer",
+    "author": "Ettore Delprino",
+    "dependencies": {
+    },
+    "bin": {
+        "pom": "./bin/main.js"
+    },
+    "preferGlobal" : "true"
+}
