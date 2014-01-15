@@ -1,5 +1,6 @@
 {
     "name": "pom",
+    "version": "0.1.0",
     "description": "Simple node CLI Pomodoro timer",
     "author": "Ettore Delprino",
     "dependencies": {
