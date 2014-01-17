@@ -3,6 +3,7 @@ var daemon = require("daemonize2").setup({
     main: "../lib/pom.js",
     name: "pom",
     pidfile: "pom.pid",
+    silent: true
 });
 
 var program = require('commander');
@@ -10,24 +11,23 @@ program.version('0.1.0');
 
 program
     .command('start')
-    .description('Start pom')
+    .description('Start pom timer')
     .action(function(){
         daemon.start();
+        console.log('Pomodoro started');
     });
 
 program
     .command('stop')
-    .description('Stop pom')
+    .description('Stop pom timer')
     .action(function(){
         daemon.stop();
+        console.log('Pomodoro interrupted');
     });
+
+program
+    .command('')
+    .description('deploy the given env')
+    .action(function(){console.log('diomerda');});
 
 program.parse(process.argv);
-
-daemon
-    .on("started", function(pid) {
-        console.log("Pom started");
-    })
-    .on("stopped", function(pid) {
-        console.log("Pom stopped");
-    });

@@ -1,5 +1,14 @@
 duration:
-    pomodoro: 1
+    pomodoro: 25
+    break: 5
 event:
-    pomodoro_ended:
-        - terminal-notifier -message "Fine pomodoro"
+    pomodoro:
+        start:
+            - terminal-notifier -message "Inizio pomodoro"
+         end:
+            - terminal-notifier -message "Fine pomodoro"
+    break:
+        start:
+            - terminal-notifier -message "Inizio pausa :)"
+        end:
+            - terminal-notifier -message "Fine pausaaaaaa"
