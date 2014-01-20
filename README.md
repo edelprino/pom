@@ -12,16 +12,16 @@ pom -h
 Before start pom you have to create and setup your `~/.pom.yml`:
 ```yml
 duration:
-    pomodoro: 25
-    break: 5
+    pomodoro: 1
+    break: 1
 commands:
     pomodoro:
         start:
             - terminal-notifier -message "Inizio pomodoro"
-            - osascript -e 'tell application "Spotify" to play'
+            - osascript -e 'tell application "Spotify" to play';
         end:
             - terminal-notifier -message "Fine pomodoro"
-            - osascript -e 'tell application "Spotify" to pause'
+            - osascript -e 'tell application "Spotify" to pause';
     break:
         start:
             - terminal-notifier -message "Inizio pausa :)"

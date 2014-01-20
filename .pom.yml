@@ -1,12 +1,14 @@
 duration:
-    pomodoro: 25
-    break: 5
-event:
+    pomodoro: 1
+    break: 1
+commands:
     pomodoro:
         start:
             - terminal-notifier -message "Inizio pomodoro"
-         end:
+            - osascript -e 'tell application "Spotify" to play';
+        end:
             - terminal-notifier -message "Fine pomodoro"
+            - osascript -e 'tell application "Spotify" to pause';
     break:
         start:
             - terminal-notifier -message "Inizio pausa :)"

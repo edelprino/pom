@@ -3,10 +3,10 @@ var timer   = require('daemonize2');
 var command = require('commander');
 var version = require('../package.json').version;
 
-var setup  = {
+var conf = {
     main: '../lib/pom.js',
     name: 'pom',
-    pidfile: 'pom.pid',
+    pidfile: '/tmp/pom.pid',
     silent: true
 };
 
@@ -17,8 +17,8 @@ command
     .command('start')
     .description('start pomodoro timer')
     .action(function(){
-        setup.argv = command.break ? 'break' : 'pomodoro';
-        timer.setup(setup).start();
+        conf.argv = command.break ? 'break' : 'pomodoro';
+        timer.setup(conf).start();
         console.log('pomodoro start');
     });
 
@@ -26,7 +26,7 @@ command
     .command('stop')
     .description('stop pomodoro timer')
     .action(function(){
-        timer.setup(setup).stop();
+        timer.setup(conf).stop();
         console.log('pomodoro stop');
     });
 
