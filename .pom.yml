@@ -1,5 +1,5 @@
 duration:
-    pomodoro: 1
+    pomodoro: 25
     break: 1
 commands:
     pomodoro:
