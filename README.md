@@ -14,19 +14,19 @@ The first time you will run `pom`, it will copy the standard configuration file 
 
 ```yml
 duration:
-    pomodoro: 1
-    break: 1
+    pomodoro: 25
+    break: 5
 commands:
     pomodoro:
         start:
-            - terminal-notifier -message "Inizio pomodoro"
+            - terminal-notifier -message "Pomodoro started!"
             - osascript -e 'tell application "Spotify" to play';
         end:
-            - terminal-notifier -message "Fine pomodoro"
+            - terminal-notifier -message "Pomodoro ended!"
             - osascript -e 'tell application "Spotify" to pause';
     break:
         start:
-            - terminal-notifier -message "Inizio pausa :)"
+            - terminal-notifier -message "Break started!"
         end:
-            - terminal-notifier -message "Fine pausaaaaaa"
+            - terminal-notifier -message "Break ended!"
 ```
