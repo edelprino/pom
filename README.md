@@ -10,7 +10,8 @@ pom -h
 ```
 
 ## Configuration
-Before start pom you have to create and setup your `~/.pom.yml`:
+The first time you will run `pom`, it will copy the standard configuration file in `~/.pom.yml`:
+
 ```yml
 duration:
     pomodoro: 1
