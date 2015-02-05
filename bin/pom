@@ -31,3 +31,5 @@ command
     });
 
 command.parse(process.argv);
+
+if (!command.args.length) command.help();
