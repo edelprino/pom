@@ -2,6 +2,7 @@
 var timer   = require('daemonize2');
 var command = require('commander');
 var version = require('../package.json').version;
+var fs = require('fs');
 
 var conf = {
     main: '../lib/pom.js',
@@ -20,6 +21,28 @@ command
         conf.argv = command.break ? 'break' : 'pomodoro';
         timer.setup(conf).start();
         console.log('pomodoro start');
+    });
+
+command
+    .command('status')
+    .description('check the status of pomodoro timer')
+    .action(function(){
+        var isRunning = timer.setup(conf).status();
+        if (isRunning) {
+            fs.stat(conf.pidfile, function(err, stats) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    var startTime = stats.ctime;
+                    var now = new Date();
+                    var secondsDiff = (now.getTime() - startTime.getTime())/1000;
+                    var minutesLeft = 25 - Math.floor(secondsDiff / 60);
+                    console.log('Pomodoro ticking! ' + minutesLeft + " minutes left.");
+                }
+            })
+        } else {
+            console.log('No pomodoro running');
+        }
     });
 
 command
