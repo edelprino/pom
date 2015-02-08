@@ -21,6 +21,8 @@ commands:
         start:
             - terminal-notifier -message "Pomodoro started!"
             - osascript -e 'tell application "Spotify" to play';
+        stop:
+            - osascript -e 'tell application "Spotify" to pause';
         end:
             - terminal-notifier -message "Pomodoro ended!"
             - osascript -e 'tell application "Spotify" to pause';
