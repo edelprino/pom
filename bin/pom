@@ -14,13 +14,18 @@ var conf = {
 command.version(version);
 command.option('-b, --break', 'break')
 
+conf.argv = command.break ? 'break' : 'pomodoro';
 var timerDaemon = daemonize.setup(conf);
 
 command
     .command('start')
     .description('start pomodoro timer')
     .action(function(){
-        conf.argv = command.break ? 'break' : 'pomodoro';
+        var isRunning = timerDaemon.status();
+        if (isRunning) {
+            showMinutesLeft();
+            return;
+        }
         timerDaemon.start();
         console.log('pomodoro start');
     });
