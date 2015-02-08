@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var timer   = require('daemonize2');
+var daemonize   = require('daemonize2');
 var command = require('commander');
 var version = require('../package.json').version;
 var fs = require('fs');
@@ -14,12 +14,14 @@ var conf = {
 command.version(version);
 command.option('-b, --break', 'break')
 
+var timerDaemon = daemonize.setup(conf);
+
 command
     .command('start')
     .description('start pomodoro timer')
     .action(function(){
         conf.argv = command.break ? 'break' : 'pomodoro';
-        timer.setup(conf).start();
+        timerDaemon.start();
         console.log('pomodoro start');
     });
 
@@ -27,19 +29,9 @@ command
     .command('status')
     .description('check the status of pomodoro timer')
     .action(function(){
-        var isRunning = timer.setup(conf).status();
+        var isRunning = timerDaemon.status();
         if (isRunning) {
-            fs.stat(conf.pidfile, function(err, stats) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    var startTime = stats.ctime;
-                    var now = new Date();
-                    var secondsDiff = (now.getTime() - startTime.getTime())/1000;
-                    var minutesLeft = 25 - Math.floor(secondsDiff / 60);
-                    console.log('Pomodoro ticking! ' + minutesLeft + " minutes left.");
-                }
-            })
+            showMinutesLeft();
         } else {
             console.log('No pomodoro running');
         }
@@ -49,10 +41,24 @@ command
     .command('stop')
     .description('stop pomodoro timer')
     .action(function(){
-        timer.setup(conf).stop();
+        timerDaemon.stop();
         console.log('pomodoro stop');
     });
 
 command.parse(process.argv);
 
 if (!command.args.length) command.help();
+
+function showMinutesLeft() {
+    fs.stat(conf.pidfile, function(err, stats) {
+        if (err) {
+            console.log(err);
+        } else {
+            var startTime = stats.ctime;
+            var now = new Date();
+            var secondsDiff = (now.getTime() - startTime.getTime())/1000;
+            var minutesLeft = 25 - Math.floor(secondsDiff / 60);
+            console.log('Pomodoro ticking! ' + minutesLeft + " minutes left.");
+        }
+    });
+}
