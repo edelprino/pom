@@ -18,7 +18,8 @@
     "commander": "2.1.0"
   },
   "bin": {
-    "pom": "./bin/pom"
+    "pom": "./bin/pom",
+    "test": "mocha"
   },
   "preferGlobal": "true"
 }
