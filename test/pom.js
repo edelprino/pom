@@ -2,21 +2,20 @@ var assert = require("assert");
 var pom = require('../lib/pom');
 
 describe('pom', function(){
-    it('should execute start commands when pom run', function(){
-        commands = {
-            start: function() {assert.ok(true)},
-            end: function() {assert.fail()}
-        };
-        pom.run(32, commands);
-    })
 
-    it('should execute end commands when pom ended', function(done){
-        this.timeout(600);
-        commands = {
-            start: function() {assert.ok(true)},
-            end: function() {assert.ok(false);done()}
+    it('should execute start() when pomodoro started', function(done){
+        var commands = {
+            start: function() {done()},
+            end: function() {}
         };
-        pom.run(0.01, commands);
-    })
+        pom.run(0, commands);
+    });
 
+    it('should execute end() when pomodoro ended', function(done){
+        var commands = {
+            start: function() {},
+            end: function() {done()}
+        };
+        pom.run(0, commands);
+    });
 })
