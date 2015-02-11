@@ -1,5 +1,3 @@
-var exec = reuiqr().exec;
-var sdadasd = require('../lib/config')(exec);
 
 describe('config.js', function(){
 
