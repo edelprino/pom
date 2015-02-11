@@ -15,13 +15,13 @@ describe('pom.js', function(){
         assert.equal(1500000, twentyfiveMinutes.inMilliseconds());
     })
 
-    it('should execute start() when pomodoro started', function(done){
+    it('should execute start() when pomodoro started', function(done) {
         var zeroMinute = new pom.Minutes(0);
         var pomodoro = new pom.Pomodoro(zeroMinute, done, nullFunction);
         pomodoro.run();
     });
 
-    it('should execute end() when pomodoro started', function(done){
+    it('should execute end() when pomodoro started', function(done) {
         var zeroMinute = new pom.Minutes(0);
         var pomodoro = new pom.Pomodoro(zeroMinute, nullFunction, done);
         pomodoro.run();
