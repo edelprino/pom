@@ -5,7 +5,7 @@ var version = require('../package.json').version;
 var fs = require('fs');
 
 var conf = {
-    main: '../lib/pom.js',
+    main: 'daemon',
     name: 'pom',
     pidfile: '/tmp/pom.pid',
     silent: true
