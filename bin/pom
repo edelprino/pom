@@ -18,7 +18,7 @@ command
     .command('start')
     .description('start pomodoro timer')
     .action(function(){
-        conf.argv = command.break ? 'break' : 'pomodoro';
+        conf.argv = command.break ? 'break' : 'default';
         timer.setup(conf).start();
         console.log('pomodoro start');
     });
@@ -28,21 +28,21 @@ command
     .description('check the status of pomodoro timer')
     .action(function(){
         var isRunning = timer.setup(conf).status();
-        if (isRunning) {
-            fs.stat(conf.pidfile, function(err, stats) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    var startTime = stats.ctime;
-                    var now = new Date();
-                    var secondsDiff = (now.getTime() - startTime.getTime())/1000;
-                    var minutesLeft = 25 - Math.floor(secondsDiff / 60);
-                    console.log('Pomodoro ticking! ' + minutesLeft + " minutes left.");
-                }
-            })
-        } else {
+        if (!isRunning) {
             console.log('No pomodoro running');
+            return;
         }
+        fs.stat(conf.pidfile, function(err, stats) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            var startTime = stats.ctime;
+            var now = new Date();
+            var secondsDiff = (now.getTime() - startTime.getTime())/1000;
+            var minutesLeft = 25 - Math.floor(secondsDiff / 60);
+            console.log('Pomodoro ticking! ' + minutesLeft + " minutes left.");
+        })
     });
 
 command

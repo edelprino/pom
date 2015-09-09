@@ -5,7 +5,7 @@ var Launcher = require('../lib/launcher').Launcher;
 var Setup = require('../lib/setup').Setup;
 
 var CONFIGURATION_FILE = process.env.HOME + '/.pom.yml';
-var action = process.argv[2] || 'default';
+var action = process.argv[2];
 var setup = new Setup(CONFIGURATION_FILE).get(action);
 
 var duration = new pom.Minutes(setup.duration);
