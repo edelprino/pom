@@ -1,69 +1,69 @@
 #!/usr/bin/env node
-var daemonize   = require('daemonize2');
-var command = require('commander');
-var version = require('../package.json').version;
-var fs = require('fs');
+var daemonize   = require('daemonize2')
+var command = require('commander')
+var version = require('../package.json').version
+var fs = require('fs')
 
 var conf = {
     main: '../lib/pom.js',
     name: 'pom',
     pidfile: '/tmp/pom.pid',
     silent: true
-};
+}
 
-command.version(version);
+command.version(version)
 command.option('-b, --break', 'break')
 
-conf.argv = command.break ? 'break' : 'pomodoro';
-var timerDaemon = daemonize.setup(conf);
+conf.argv = command.break ? 'break' : 'pomodoro'
+var timerDaemon = daemonize.setup(conf)
 
 command
     .command('start')
     .description('start pomodoro timer')
     .action(function(){
-        var isRunning = timerDaemon.status();
+        var isRunning = timerDaemon.status()
         if (isRunning) {
-            showMinutesLeft();
-            return;
+            showMinutesLeft()
+            return
         }
-        timerDaemon.start();
-        console.log('pomodoro start');
-    });
+        timerDaemon.start()
+        console.log('pomodoro start')
+    })
 
 command
     .command('status')
     .description('check the status of pomodoro timer')
     .action(function(){
-        var isRunning = timerDaemon.status();
+        var isRunning = timerDaemon.status()
         if (isRunning) {
-            showMinutesLeft();
+            showMinutesLeft()
         } else {
-            console.log('No pomodoro running');
+            console.log('No pomodoro running')
         }
-    });
+    })
 
 command
     .command('stop')
     .description('stop pomodoro timer')
     .action(function(){
-        timerDaemon.stop();
-        console.log('pomodoro stop');
-    });
+        timerDaemon.stop()
+        console.log('pomodoro stop')
+    })
 
-command.parse(process.argv);
+command.parse(process.argv)
 
-if (!command.args.length) command.help();
+if (!command.args.length) command.help()
 
 function showMinutesLeft() {
     fs.stat(conf.pidfile, function(err, stats) {
         if (err) {
-            console.log(err);
+            console.log(err)
         } else {
-            var startTime = stats.ctime;
-            var now = new Date();
-            var secondsDiff = (now.getTime() - startTime.getTime())/1000;
-            var minutesLeft = 25 - Math.floor(secondsDiff / 60);
-            console.log('Pomodoro ticking! ' + minutesLeft + " minutes left.");
+            var startTime = stats.ctime
+            var now = new Date()
+            var secondsDiff = (now.getTime() - startTime.getTime())/1000
+            var minutesLeft = 25 - Math.floor(secondsDiff / 60)
+            console.log('Pomodoro ticking! ' + minutesLeft + " minutes left.")
         }
-    });
+    })
 }
