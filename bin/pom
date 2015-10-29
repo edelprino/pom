@@ -61,9 +61,10 @@ function showMinutesLeft() {
         } else {
             var startTime = stats.ctime
             var now = new Date()
-            var secondsDiff = (now.getTime() - startTime.getTime())/1000
-            var minutesLeft = 25 - Math.floor(secondsDiff / 60)
-            console.log('Pomodoro ticking! ' + minutesLeft + " minutes left.")
+            var secondsDiff = (now.getTime() - startTime.getTime()) / 1000
+            var minutesLeft = 24 - Math.floor(secondsDiff / 60)
+            var secondsLeft = 59 - Math.floor(secondsDiff % 60)
+            console.log(minutesLeft + ':' + secondsLeft)
         }
     })
 }
