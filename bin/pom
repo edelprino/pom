@@ -13,18 +13,21 @@ var conf = {
 
 command.version(version)
 
-var timerDaemon = daemonize.setup(conf)
 
 command
-    .command('start')
+    .command('start [environment]')
     .description('start pomodoro timer')
-    .action(function(){
-        var isRunning = timerDaemon.status()
+    .action(function(environment){
+        var environment = environment ? environment : 'default';
+        conf['argv'] = environment
+        var timer = daemonize.setup(conf)
+
+        var isRunning = timer.status()
         if (isRunning) {
             showMinutesLeft()
             return
         }
-        timerDaemon.start()
+        timer.start()
         console.log('pomodoro start')
     })
 
@@ -32,7 +35,8 @@ command
     .command('status')
     .description('check the status of pomodoro timer')
     .action(function(){
-        var isRunning = timerDaemon.status()
+        var timer = daemonize.setup(conf)
+        var isRunning = timer.status()
         if (isRunning) {
             showMinutesLeft()
         } else {
@@ -44,7 +48,8 @@ command
     .command('stop')
     .description('stop pomodoro timer')
     .action(function(){
-        timerDaemon.stop()
+        var timer = daemonize.setup(conf)
+        timer.stop()
         console.log('pomodoro stop')
     })
 
