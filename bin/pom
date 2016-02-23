@@ -12,9 +12,7 @@ var conf = {
 }
 
 command.version(version)
-command.option('-b, --break', 'break')
 
-conf.argv = command.break ? 'break' : 'pomodoro'
 var timerDaemon = daemonize.setup(conf)
 
 command
@@ -64,7 +62,11 @@ function showMinutesLeft() {
             var secondsDiff = (now.getTime() - startTime.getTime()) / 1000
             var minutesLeft = 24 - Math.floor(secondsDiff / 60)
             var secondsLeft = 59 - Math.floor(secondsDiff % 60)
-            console.log(minutesLeft + ':' + secondsLeft)
+            console.log(n(minutesLeft) + ':' + n(secondsLeft))
         }
     })
+}
+
+function n(n) {
+  return n > 9 ? n : '0' + n;
 }

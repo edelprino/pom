@@ -1,18 +1,27 @@
-duration:
-    pomodoro: 25
-    break: 5
-commands:
-    pomodoro:
-        start:
-            - terminal-notifier -message "Pomodoro started!"
-            - osascript -e 'tell application "Spotify" to play';
-        stop:
-            - osascript -e 'tell application "Spotify" to pause';
-        end:
-            - terminal-notifier -message "Pomodoro ended!"
-            - osascript -e 'tell application "Spotify" to pause';
-    break:
-        start:
-            - terminal-notifier -message "Break started!"
-        end:
-            - terminal-notifier -message "Break ended!"
+default:
+    duration: 25
+    start:
+        - terminal-notifier -message "Pomodoro started!"
+    stop:
+        - terminal-notifier -message "Pomodoro stoped!"
+    end:
+        - terminal-notifier -message "Pomodoro ended!"
+
+short:
+    duration: 5
+    start:
+        - terminal-notifier -message "Short break started!"
+    stop:
+        - terminal-notifier -message "Short break stoped!"
+    end:
+        - terminal-notifier -message "Short break ended!"
+
+long:
+    duration: 15
+    start:
+        - terminal-notifier -message "Long break started!"
+    stop:
+        - terminal-notifier -message "Long break stoped!"
+    end:
+        - terminal-notifier -message "Long break ended!"
+
