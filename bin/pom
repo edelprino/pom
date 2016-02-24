@@ -8,7 +8,7 @@ var conf = {
     main: '../lib/pom.js',
     name: 'pom',
     pidfile: '/tmp/pom.pid',
-    silent: false
+    silent: true
 }
 
 command.version(version)
@@ -73,5 +73,5 @@ function showMinutesLeft() {
 }
 
 function n(n) {
-  return n > 9 ? '0' + n : n;
+  return n > 9 ? n : '0' + n;
 }
