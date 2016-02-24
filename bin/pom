@@ -40,7 +40,7 @@ command
         if (isRunning) {
             showMinutesLeft()
         } else {
-            console.log('No pomodoro running')
+            console.log('--:--')
         }
     })
 
