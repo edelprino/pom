@@ -13,9 +13,12 @@
     "url": "https://github.com/edelprino/Pom"
   },
   "dependencies": {
+    "commander": "2.1.0",
     "daemonize2": "0.4.2",
-    "yamljs": "0.1.4",
-    "commander": "2.1.0"
+    "moment": "^2.15.1",
+    "momentjs": "^1.1.17",
+    "tmp": "0.0.29",
+    "yamljs": "0.1.4"
   },
   "bin": {
     "pom": "./bin/pom"
