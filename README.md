@@ -2,6 +2,7 @@
 Pom is a simple and configurable pomodoro timer.
 
 [![NPM version](https://badge.fury.io/js/pom.png)](http://badge.fury.io/js/pom)
+[![Build Status](https://travis-ci.org/edelprino/pom.svg?branch=master)](https://travis-ci.org/edelprino/pom)
 
 ## Install
 ```
