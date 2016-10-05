@@ -16,7 +16,8 @@
   "dependencies": {
     "commander": "2.1.0",
     "daemonize2": "0.4.2",
-    "moment": "^2.15.1"
+    "moment": "^2.15.1",
+    "yamljs": "^0.2.8"
   },
   "bin": {
     "pom": "./bin/pom"
